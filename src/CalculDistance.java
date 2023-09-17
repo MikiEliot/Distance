@@ -36,7 +36,7 @@ public class CalculDistance {
 
         do {
             System.out.println("Pour calculer la distance entre les villes, veuillez choisir au moins deux villes. ");
-            System.out.println("Pour chaque ville, entrez le numéro de l'indice (entre 0 et 8) et appuyez sur Entrée, ou choisissez -1 pour quitter : ");
+            System.out.println("Pour chaque ville, entrez le numéro de l'indice (entre 0 et " + (villes.length-1) +") et appuyez sur Entrée, ou choisissez -1 pour quitter : ");
 
             choix = scan.nextInt();
             if (choix == -1) {
@@ -44,14 +44,16 @@ public class CalculDistance {
                     System.out.println("Vous devez choisir au moins deux villes.");
                     choix = 0;
                 }
-            } else if (choix >= 0 && choix <= 8) {
+            } else if (choix >= 0 && choix <= villes.length) {
                 choixVilles[nombreVilles] = villes[choix];
-                System.out.println("Vous avez choisi : " + villes[choix] + "  , avec indice : " + choix);
+                System.out.println("Vous avez choisi : " + villes[choix]);
                 nombreVilles++;
             } else {
                 System.out.println("Choix invalide.");
             }
         } while (choix != -1);
+
+
         // Instanciation de la variable choixVillesFinal avec la longueur du nombre total de villes choisies.
         choixVillesFinal = new String[nombreVilles];
         // Boucle for pour remplir le tableau avec les noms des villes sans prendre en compte les emplacements null.
@@ -69,14 +71,14 @@ public class CalculDistance {
             System.out.print(" en passant par ");
             for (int i = 1; i < choixVillesFinal.length - 1; i++) {
                 if (i < choixVillesFinal.length - 2) {
-                    System.out.print(choixVillesFinal[i] + ", ");
+                    System.out.print(choixVillesFinal[i] + " et ");
                 } else {
                     System.out.print(choixVillesFinal[i] + " ");
                 }
             }
         }
         System.out.println();
-        System.out.print(" pour enfin arrivée à " + choixVillesFinal[choixVillesFinal.length - 1]);
+        System.out.print(" pour arriver à " + choixVillesFinal[choixVillesFinal.length - 1]);
         System.out.println();
 
 
@@ -147,7 +149,7 @@ public class CalculDistance {
         for (int i = 1; i<args.length; i++){
             distance += calculateDistance(args[i-1][0],args[i-1][1],args[i][0],args[i][1]) ;
         }
-        System.out.println("La distance totale de votre trajet est : " + distance + " km. Pensez à faire des pause tout les deux heures. Bonne voyage");
+        System.out.println("La distance totale de votre trajet est : " + distance + " km. Pensez à faire des pause tout les deux heures. Bon voyage");
         return distance;
     }
 
